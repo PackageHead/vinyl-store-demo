@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "my_user",
+    "password": "password",
+    "database": "my_project_db",
+    "host": "localhost",
+    "models": "[__dirname + '/src/**/*.model.ts']",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "my_user",
+    "password": "password",
+    "database": "my_project_db",
+    "host": "localhost",
+    "models": "[__dirname + '/src/**/*.model.ts']",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "my_user",
+    "password": "password",
+    "database": "my_project_db",
+    "host": "localhost",
+    "models": "[__dirname + '/src/**/*.model.ts']",
+    "dialect": "mysql"
+  }
+}
