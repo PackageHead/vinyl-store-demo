@@ -17,19 +17,19 @@ import { RolesGuard } from './auth/roles.guard';
 import { VinylService } from './vinyl/vinyl.service';
 import { APP_GUARD } from '@nestjs/core';
 import { Review } from './review/review.model';
+import { databaseConfig } from './config/config';
+import { ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    SequelizeModule.forRoot({
-      dialect: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'my_user',
-      password: 'password',
-      database: 'my_project_db',
-      models: [User, Vinyl, Review],
-      autoLoadModels: true,
-      synchronize: true,
+    SequelizeModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        ...databaseConfig(configService),
+        models: [User, Vinyl, Review],
+        autoLoadModels: true,
+        synchronize: true,
+      }),
     }),
     ConfigModule,
     UserModule,

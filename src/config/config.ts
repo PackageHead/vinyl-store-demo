@@ -1,3 +1,7 @@
+import { ConfigService } from '@nestjs/config';
+import { SequelizeModuleOptions } from '@nestjs/sequelize';
+import { Dialect } from 'sequelize';
+
 export default () => ({
   LOG_LEVEL: 'info',
   port: '3000',
@@ -11,9 +15,14 @@ export default () => ({
   DISCOGS_API_KEY: 'api-key',
   STRIPE_SECRET_KEY: 'your-stripe-secret-key',
   STRIPE_PUBLIC_KEY: 'your-stripe-secret-key',
-  DB_HOST: 'localhost',
-  DB_PORT: '5432',
-  DB_USERNAME: 'root',
-  DB_PASSWORD: 'password',
-  DB_NAME: 'my_project_db',
+});
+export const databaseConfig = (
+  configService: ConfigService,
+): SequelizeModuleOptions => ({
+  dialect: 'mysql' as Dialect,
+  host: configService.get<string>('MYSQLHOST'),
+  port: parseInt(configService.get<string>('MYSQLPORT'), 10),
+  username: configService.get<string>('MYSQLUSER'),
+  password: configService.get<string>('MYSQLPASSWORD'),
+  database: configService.get<string>('MYSQL_DATABASE'),
 });
