@@ -15,6 +15,11 @@ export default () => ({
   DISCOGS_API_KEY: 'api-key',
   STRIPE_SECRET_KEY: 'your-stripe-secret-key',
   STRIPE_PUBLIC_KEY: 'your-stripe-secret-key',
+  MYSQLHOST: process.env.MYSQLHOST,
+  MYSQLPORT: process.env.MYSQLPORT,
+  MYSQLUSER: process.env.MYSQLUSER,
+  MYSQLPASSWORD: process.env.MYSQLPASSWORD,
+  MYSQL_DATABASE: process.env.MYSQL_DATABASE,
 });
 export const databaseConfig = (
   configService: ConfigService,
